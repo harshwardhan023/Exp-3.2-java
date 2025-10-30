@@ -1,0 +1,9 @@
+@Transactional
+public void transferMoney(int fromAccId, int toAccId, double amount) {
+    Account from = accountDAO.getAccount(fromAccId);
+    Account to = accountDAO.getAccount(toAccId);
+    from.setBalance(from.getBalance() - amount);
+    to.setBalance(to.getBalance() + amount);
+    accountDAO.update(from);
+    accountDAO.update(to);
+}
